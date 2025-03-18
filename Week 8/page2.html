@@ -1,0 +1,101 @@
+<html>
+<head>
+    <title>Page 2</title>
+        <!-- Link to external stylesheet -->
+        <link rel="stylesheet" type="text/css" href="mainstyle.css">
+
+    <style>
+        input:invalid, textarea:invalid {
+            border-color: red;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 12px;
+        }
+    </style>
+    <script>
+        function validateForm(event) {
+            // Clear any previous error messages
+            let errorMessages = document.querySelectorAll('.error-message');
+            errorMessages.forEach(function(msg) {
+                msg.remove();
+            });
+
+            let isValid = true;
+
+            // Check if name is empty
+            let name = document.getElementById("name");
+            if (name.value === "") {
+                isValid = false;
+                let errorMsg = document.createElement('span');
+                errorMsg.classList.add('error-message');
+                errorMsg.textContent = "Name is required!";
+                name.parentElement.appendChild(errorMsg);
+                name.style.borderColor = "red";
+                name.focus();
+            } else {
+                name.style.borderColor = "";
+            }
+
+            // Check if email is empty
+            let email = document.getElementById("email");
+            if (email.value === "") {
+                isValid = false;
+                let errorMsg = document.createElement('span');
+                errorMsg.classList.add('error-message');
+                errorMsg.textContent = "Email is required!";
+                email.parentElement.appendChild(errorMsg);
+                email.style.borderColor = "red";
+                email.focus();
+            } else {
+                email.style.borderColor = "";
+            }
+
+            // Check if message is empty
+            let message = document.getElementById("message");
+            if (message.value === "") {
+                isValid = false;
+                let errorMsg = document.createElement('span');
+                errorMsg.classList.add('error-message');
+                errorMsg.textContent = "Message is required!";
+                message.parentElement.appendChild(errorMsg);
+                message.style.borderColor = "red";
+                message.focus();
+            } else {
+                message.style.borderColor = "";
+            }
+
+            // If any field is empty, prevent form submission
+            if (!isValid) {
+                event.preventDefault();
+            }
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Contact Me</h1>
+        <ul>
+            <li><a href="file:///Users/taylor/Documents/GitHub/CreativeCoding1HW/Week%207/index.html">Home</a></li>
+            <li><a href="file:///Users/taylor/Documents/GitHub/CreativeCoding1HW/Week%207/page1.html">About Me</a></li>
+            <li><a href="file:///Users/taylor/Documents/GitHub/CreativeCoding1HW/Week%208/page2.html">Contact Me</a></li>
+        </ul>
+    </header>
+    <section>
+        <h2>Contact Form</h2>
+        <form action="submit_form.php" method="POST" onsubmit="validateForm(event)">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required><br><br>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required><br><br>
+
+            <label for="message">Message:</label><br>
+            <textarea id="message" name="message" rows="4" cols="50" required></textarea><br><br>
+
+            <input type="submit" value="Submit">
+        </form>
+    </section>
+</body>
+</html>
